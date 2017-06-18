@@ -1,0 +1,66 @@
+<div class="col-md-offset-2 col-md-4 content">
+  <form [formGroup]="createEventForm" class="form" (ngSubmit)="onSubmit(createEventForm.value)" >
+    <div class="form-group">
+      <label class="center-block" >Name</label>
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+    <div *ngIf="formErrors.name">
+      <div *ngFor="let errors of formErrors.name" >
+        <p class="alert alert-danger">{{ errors }}<p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="center-block" >Start Date</label>
+      <input class="form-control" type="date" formControlName="dateStart">
+    </div>
+    <div *ngIf="formErrors.dateStart">
+      <div *ngFor="let errors of formErrors.dateStart" >
+        <p class="alert alert-danger">{{ errors }}<p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="center-block" >Start At</label>
+      <input class="form-control" type="time" formControlName="timeStart">
+    </div>
+    <div *ngIf="formErrors.timeStart">
+      <div *ngFor="let errors of formErrors.timeStart" >
+        <p class="alert alert-danger">{{ errors }}<p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="center-block" >Finish Date</label>
+      <input class="form-control" type="date" formControlName="dateFinish">
+    </div>
+    <div *ngIf="formErrors.dateFinish">
+      <div *ngFor="let errors of formErrors.dateFinish" >
+        <p class="alert alert-danger">{{ errors }}<p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="center-block" >Finish At</label>
+      <input class="form-control" type="time" formControlName="timeFinish">
+    </div>
+    <div *ngIf="formErrors.timeFinish">
+      <div *ngFor="let errors of formErrors.timeFinish" >
+        <p class="alert alert-danger">{{ errors }}<p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="center-block" >Location</label>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search ..." formControlName="autocomplete">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
+      </div>
+      <ul class="list-group">
+        <li (click)="chooseItem(item)" *ngFor="let item of autocompleteItems" class="list-group-item">
+          {{ item.description }}
+        </li>
+      </ul>
+      <div id="map"></div>
+    </div>
+    <button type="submit" class="col-md-offset-4 col-md-4 btn btn-primary"
+    [disabled]="!createEventForm.valid">Create Event</button>
+  </form>
+</div>

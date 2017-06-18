@@ -2,5 +2,15 @@ $icon-font-path: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/" !defau
 // Include Bootstrap styles
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap";
 
-.app{
+h1{
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+  text-align: center;
+}
+
+.content{
+  border-color: #ddd;
+  border-style: solid;
+  border-width: 1px
 }

@@ -7,10 +7,10 @@ import 'rxjs/add/operator/debounceTime';
 @Component({
   selector: '',
   styleUrls: ['./login.scss'],
-  templateUrl: './login.html'
+  templateUrl: './admin-login.html'
 })
 
-export class LoginComponent {
+export class AdminLoginComponent {
 
   loginForm: FormGroup;
   formErrors = {
@@ -66,7 +66,8 @@ export class LoginComponent {
   onSubmit(values){
     this.loginService.getAdmin(values)
     .then( res => {
-      console.log(res);
+      console.log(res.json());
+      this.router.navigate(['/createClientUser'])
     }, err => console.log(err))
     // this.router.navigate(['/profile']);
   }

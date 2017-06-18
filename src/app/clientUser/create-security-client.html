@@ -1,0 +1,24 @@
+<div class="col-md-offset-2 col-md-4 content">
+  <form [formGroup]="createSCForm" class="form" (ngSubmit)="onSubmit(createSCForm.value)" >
+    <div class="form-group">
+      <label class="center-block" >Name</label>
+      <input class="form-control" type="email" formControlName="email">
+    </div>
+    <div *ngIf="formErrors.email">
+      <div *ngFor="let errors of formErrors.email" >
+        <p class="alert alert-danger">{{ errors }}<p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="center-block" >Password</label>
+      <input class="form-control" type="password" formControlName="password">
+    </div>
+    <div *ngIf="formErrors.password">
+      <div *ngFor="let errors of formErrors.password" >
+        <p class="alert alert-danger">{{ errors }}<p>
+      </div>
+    </div>
+    <button type="submit" class="col-md-offset-3 col-md-6 btn btn-primary "
+    [disabled]="!createSCForm.valid">Create Security Client</button>
+  </form>
+</div>
