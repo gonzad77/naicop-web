@@ -1,5 +1,6 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {NavigationStart, Router} from '@angular/router';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 
 @Component({
@@ -11,26 +12,40 @@ import {NavigationStart, Router} from '@angular/router';
 
 export class AppComponent {
 
-  slide: boolean = false;
+  adminSlide: boolean = false;
+  clientUserSlide: boolean = false
   activeProfile: boolean = true;
   activeCreateEvent: boolean;
   activeEventList: boolean;
   activeCreateSC: boolean;
   activeDeleteSC: boolean;
+  activeCreateCU: boolean;
+  activeCreateCategory: boolean;
 
   constructor(
-    router:Router
+    public router: Router,
+    public localStorage: LocalStorageService
   ) {
       router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
         if(event.url == '/login' || event.url == '/' || event.url == '/admin'){
-          this.slide = false;
+          this.adminSlide = false;
+          this.clientUserSlide = false;
+        }
+        else if (event.url == '/createClientUser' || event.url == '/createCategory'){
+          this.adminSlide = true;
+          this.clientUserSlide = false;
         }
         else{
-          this.slide = true;
+          this.adminSlide = false;
+          this.clientUserSlide = true;
         }
       }
     });
+  }
+
+  ngOnInit(){
+
   }
 
   clickProfile(){
@@ -73,5 +88,27 @@ export class AppComponent {
     this.activeDeleteSC = true;
   }
 
+  clickCreateCU(){
+    this.activeCreateCU = true;
+    this.activeCreateCategory = false;
+  }
 
+  clickCreateCategory(){
+    this.activeCreateCU = false;
+    this.activeCreateCategory = true;
+  }
+
+  logout(){
+    let rol = this.localStorage.get('rol');
+    if(rol){
+      if( rol == 'admin'){
+        this.localStorage.set('rol', null);
+        this.router.navigate(['/admin']);
+      }
+      else{
+        this.localStorage.set('rol', null);
+        this.router.navigate(['/login'])
+      }
+    }
+  }
 }

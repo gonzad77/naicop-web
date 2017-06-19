@@ -1,7 +1,16 @@
 <div class="col-md-offset-2 col-md-4 content">
   <div class="thumbnail">
     <img src="{{clientUser.image}}">
-    <button  type="button" class="col-md-offset-4 col-md-4 btn btn-primary btn-sm">Change Photo</button>
+    <image-upload
+    [max]="1"
+    [url]="'path/to/image.jpg'"
+    [headers]="[
+    {header: 'Authorization', value: 'MyToken'}
+    ]"
+    [buttonCaption]="'Select Images!'"
+    [dropBoxMessage]="'Drop your images here!'"
+    (onFileUploadFinish)="imageUploaded($event)"
+    ></image-upload>
     <br>
     <br>
     <div class="caption">

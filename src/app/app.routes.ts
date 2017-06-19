@@ -8,6 +8,7 @@ import { ClientUserResolver } from './clientUser/client-user-resolver';
 import { CreateSecurityClientComponent } from './clientUser/create-security-client';
 import { DeleteSecurityClientComponent } from './clientUser/delete-security-client';
 import { AdminLoginComponent } from './login/admin-login';
+import { CreateClientUserComponent } from './administrator/create-client-user';
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,4 +19,5 @@ export const rootRouterConfig: Routes = [
   { path: 'createSecurityClient', component: CreateSecurityClientComponent },
   { path: 'deleteSecurityClient', component: DeleteSecurityClientComponent },
   { path: 'admin', component: AdminLoginComponent },
+  { path: 'createClientUser', component: CreateClientUserComponent },
 ];

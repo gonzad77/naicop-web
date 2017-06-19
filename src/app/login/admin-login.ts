@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Validators, FormGroup, FormControl} from '@angular/forms';
 import { LoginService } from '../services/login-service';
 import 'rxjs/add/operator/debounceTime';
+import { LocalStorageService } from 'angular-2-local-storage';
+
 
 @Component({
   selector: '',
@@ -29,11 +31,22 @@ export class AdminLoginComponent {
 
   constructor(
     public router: Router,
-    public loginService: LoginService
+    public loginService: LoginService,
+    public localStorage: LocalStorageService
   ){
   }
 
   ngOnInit(): void {
+    debugger
+    let rol = this.localStorage.get('rol');
+    if(rol){
+      if( rol == 'admin'){
+        this.router.navigate(['/createClientUser']);
+      }
+      else{
+        this.router.navigate(['/profile'])
+      }
+    }
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.compose([
         Validators.required,
@@ -67,7 +80,8 @@ export class AdminLoginComponent {
     this.loginService.getAdmin(values)
     .then( res => {
       console.log(res.json());
-      this.router.navigate(['/createClientUser'])
+      this.localStorage.set('rol', 'admin')
+      this.router.navigate(['/createClientUser']);
     }, err => console.log(err))
     // this.router.navigate(['/profile']);
   }

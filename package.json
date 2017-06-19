@@ -26,6 +26,8 @@
     "@angular/upgrade": "4.0.0-rc.2",
     "@types/googlemaps": "^3.26.14",
     "@types/node": "^6.0.48",
+    "angular-2-local-storage": "^1.0.1",
+    "angular2-image-upload": "^0.6.1",
     "angular2-router-loader": "^0.3.4",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "^3.0.0-beta.9",

@@ -3,13 +3,13 @@
 		<div class="col-md-4 col-md-offset-4">
 			<h1>Welcome to NAICOP</h1>
 		</div>
-		<div class="col-md-1 col-md-offset-11">
-			<a class="logout" *ngIf="slide">Log out</a>
+		<div class="col-md-2 col-md-offset-10">
+			<a (click)="logout()" *ngIf="clientUserSlide || adminSlide">Log out</a>
 		</div>
 	</div>
 	<div class="row">
 		<router-outlet>
-			<div class="col-md-4" *ngIf="slide">
+			<div class="col-md-4" *ngIf="clientUserSlide">
 				<ul class="nav nav-pills nav-stacked">
 					<li role="presentation" (click)="clickProfile()" [ngClass]="{'active': activeProfile}"
 					[routerLink]="['/profile']"><a>Edit Profile</a></li>
@@ -21,6 +21,14 @@
 					[routerLink]="['/createSecurityClient']"><a>New Securuty Client</a></li>
 					<li role="presentation" (click)="clickDeleteSC()" [ngClass]="{'active': activeDeleteSC}"
 					[routerLink]="['/deleteSecurityClient']"><a>Delete Securuty Client</a></li>
+				</ul>
+			</div>
+			<div class="col-md-4" *ngIf="adminSlide">
+				<ul class="nav nav-pills nav-stacked">
+					<li role="presentation" (click)="clickCreateCU()" [ngClass]="{'active': activeCreateCU}"
+					[routerLink]="['/createClientUser']"><a>Create Client User</a></li>
+					<li role="presentation" (click)="clickCreateCategory()" [ngClass]="{'active': activeCreateCategory}"
+					[routerLink]="['/createCategory']"><a>Create Category</a></li>
 				</ul>
 			</div>
 		</router-outlet>
