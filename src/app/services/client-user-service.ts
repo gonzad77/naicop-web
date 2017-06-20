@@ -1,12 +1,36 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ClientUserService {
+
+  api: string = 'http://192.168.0.103:14/api/';
+
   constructor(
+      public http: Http
   ){}
 
-  getClientUser(clientUserId){
+  getClientUser(data){
+    return this.http.get(this.api + 'clientUser/' + data.id, {})
+    .toPromise()
+  }
+
+  createClientUser(data){
+    return this.http.post(this.api + 'clientUser/', {
+      //hay que ver la entidad clientUser
+    })
+  }
+
+  updateClientUser(data){
+    return this.http.post(this.api + 'clientUser/' + data.id, {
+      //hay que ver la entidad clientUser
+    })
+  }
+
+  deleteClientUser(data){
+    return this.http.post(this.api + 'clientUser/delete/' + data.id)
   }
 
 }

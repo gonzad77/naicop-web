@@ -79,11 +79,9 @@ export class AdminLoginComponent {
   onSubmit(values){
     this.loginService.getAdmin(values)
     .then( res => {
-      console.log(res.json());
       this.localStorage.set('rol', 'admin')
       this.router.navigate(['/createClientUser']);
     }, err => console.log(err))
-    // this.router.navigate(['/profile']);
   }
 
 }

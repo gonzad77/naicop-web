@@ -1,0 +1,15 @@
+<div class="col-md-offset-2 col-md-4 content">
+  <form [formGroup]="createCategoryForm" class="form" (ngSubmit)="onSubmit(createCategoryForm.value)" >
+    <div class="form-group">
+      <label class="center-block" >Name</label>
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+    <div *ngIf="formErrors.name">
+      <div *ngFor="let errors of formErrors.name" >
+        <p class="alert alert-danger">{{ errors }}<p>
+      </div>
+    </div>
+    <button type="submit" class="col-md-offset-4 col-md-4 btn btn-primary"
+    [disabled]="!createCategoryForm.valid">Create Category</button>
+  </form>
+</div>

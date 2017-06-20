@@ -15,10 +15,16 @@ import { CreateSecurityClientComponent } from './clientUser/create-security-clie
 import { DeleteSecurityClientComponent } from './clientUser/delete-security-client';
 import { ClientUserResolver } from './clientUser/client-user-resolver';
 import { ClientUserService } from './services/client-user-service';
+import { CategoryService } from './services/category-service';
 import { LoginService } from './services/login-service';
+import { SecurutyClientService } from './services/security-client-service';
+import { EventService } from './services/event-service';
 import { CreateCategoryComponent } from './administrator/create-category';
 import { AdminLoginComponent } from './login/admin-login';
 import { CreateClientUserComponent } from './administrator/create-client-user';
+import { CategoryListComponent } from './administrator/category-list';
+import { ClientUserListComponent } from './administrator/client-user-list';
+import { EditCategoryComponent } from './administrator/edit-category';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { ImageUploadModule } from 'angular2-image-upload';
 
@@ -33,7 +39,10 @@ import { ImageUploadModule } from 'angular2-image-upload';
     DeleteSecurityClientComponent,
     CreateCategoryComponent,
     AdminLoginComponent,
-    CreateClientUserComponent
+    CreateClientUserComponent,
+    CategoryListComponent,
+    EditCategoryComponent,
+    ClientUserListComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +59,8 @@ import { ImageUploadModule } from 'angular2-image-upload';
   providers: [
     ClientUserResolver,
     ClientUserService,
-    LoginService
+    LoginService,
+    CategoryService
   ],
   bootstrap: [ AppComponent ]
 })

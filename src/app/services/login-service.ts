@@ -15,7 +15,6 @@ export class LoginService {
   ){}
 
   getAdmin(data){
-    console.log(data)
     return this.http.post(this.api + 'admins/login', {
       'email' : data.email,
       'password' : data.password
@@ -23,4 +22,11 @@ export class LoginService {
     .toPromise()
   }
 
+  getClientUser(data){
+    return this.http.post(this.api + 'clientUser/login', {
+      'email' : data.email,
+      'password' : data.password
+    })
+    .toPromise()
+  }
 }

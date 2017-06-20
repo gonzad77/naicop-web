@@ -14,32 +14,47 @@ import * as $ from 'jquery/dist/jquery';
 
 export class CreateEventComponent {
 
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number;
+  lng: number;
+  image: string;
   geocoder: any
   autocompleteItems: any;
   GoogleAutocomplete: any;
   newEvent: Event;
   createEventForm: FormGroup;
   formErrors = {
-    'name': [],
+    'title': [],
     'date': [],
     'timeStart': [],
-    'timeFinish': []
+    'timeFinish': [],
+    'description': [],
+    'capacity': [],
+    'dateStart': [],
+    'dateFinish': []
   };
   validationMessages = {
-    'name': {
-      'required': 'Name is required'
-    },
-    'date':{
-      'required':     'Date is required'
+    'title': {
+      'required': 'Title is required'
     },
     'timeStart':{
       'required':     'Start time is required'
     },
     'timeFinish':{
       'required':     'Finish time is required'
+    },
+    'description':{
+      'required':     'Description is required'
+    },
+    'capacity':{
+      'required':     'Capacity is required'
+    },
+    'dateStart':{
+      'required':     'Start date is required'
+    },
+    'dateFinish':{
+      'required':     'Finish date is required'
     }
+
   };
 
   constructor(
@@ -57,7 +72,9 @@ export class CreateEventComponent {
           zoom: 13
     });
     this.createEventForm = new FormGroup({
-      name: new FormControl('', Validators.required),
+      title: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      capacity: new FormControl('', Validators.required),
       dateStart: new FormControl('', Validators.required),
       dateFinish: new FormControl('', Validators.required),
       timeStart: new FormControl('', Validators.required),
@@ -108,6 +125,7 @@ export class CreateEventComponent {
   }
 
   chooseItem(item){
+    let env = this;
     this.geocoder.geocode({'placeId': item.place_id}, function(results, status) {
       if(status === 'OK'){
         if(results[0]){
@@ -118,16 +136,24 @@ export class CreateEventComponent {
           });
           marker.setVisible(true);
           map.setCenter(results[0].geometry.location);
+          env.lat = results[0].geometry.location.lat();
+          env.lng = results[0].geometry.location.lng();
           map.setZoom(17);
-          this.autocompleteItems = [];
+          env.autocompleteItems = [];
         }
       }
     })
   }
 
+  imageUploaded(event){
+      this.image = event.src
+  }
+
 
   onSubmit(values){
     console.log(values);
+    console.log(this.lat)
+    console.log(this.lng)
   }
 
 }

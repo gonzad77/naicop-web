@@ -33,4 +33,8 @@ export class CreateCategoryComponent {
     })
   }
 
+  onSubmit(values){
+    
+  }
+
 }

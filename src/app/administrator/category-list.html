@@ -1,0 +1,21 @@
+<div class="panel panel-default content col-md-offset-1 col-md-6 ">
+  <!-- Default panel contents -->
+  <div class="panel-heading">My categories</div>
+  <div class="panel-body">
+    <p>In this section you can edit or delete your categories</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    <tr>
+    <th>Name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor='let category of categories'>
+    <td>{{category.name}}</td>
+    <td><a>Edit</a></td>
+    <td><a>Delete</a></td>
+  </tr>
+  </table>
+</div>

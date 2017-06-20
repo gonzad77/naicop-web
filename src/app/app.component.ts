@@ -21,6 +21,8 @@ export class AppComponent {
   activeDeleteSC: boolean;
   activeCreateCU: boolean;
   activeCreateCategory: boolean;
+  activeCategoryList: boolean;
+  activeCUList: boolean;
 
   constructor(
     public router: Router,
@@ -32,7 +34,8 @@ export class AppComponent {
           this.adminSlide = false;
           this.clientUserSlide = false;
         }
-        else if (event.url == '/createClientUser' || event.url == '/createCategory'){
+        else if (event.url == '/createClientUser' || event.url == '/createCategory'
+                || event.url == '/categoryList' || event.url == '/clientUserList'){
           this.adminSlide = true;
           this.clientUserSlide = false;
         }
@@ -91,11 +94,29 @@ export class AppComponent {
   clickCreateCU(){
     this.activeCreateCU = true;
     this.activeCreateCategory = false;
+    this.activeCategoryList = false;
+    this.activeCUList = false;
   }
 
   clickCreateCategory(){
     this.activeCreateCU = false;
     this.activeCreateCategory = true;
+    this.activeCategoryList = false;
+    this.activeCUList = false;
+  }
+
+  clickListCategory(){
+    this.activeCreateCU = false;
+    this.activeCreateCategory = false;
+    this.activeCategoryList = true;
+    this.activeCUList = false;
+  }
+
+  clickCUList(){
+    this.activeCreateCU = false;
+    this.activeCreateCategory = false;
+    this.activeCategoryList = false;
+    this.activeCUList = true;
   }
 
   logout(){
@@ -107,6 +128,7 @@ export class AppComponent {
       }
       else{
         this.localStorage.set('rol', null);
+        this.localStorage.set('id', null);
         this.router.navigate(['/login'])
       }
     }

@@ -29,6 +29,10 @@
 					[routerLink]="['/createClientUser']"><a>Create Client User</a></li>
 					<li role="presentation" (click)="clickCreateCategory()" [ngClass]="{'active': activeCreateCategory}"
 					[routerLink]="['/createCategory']"><a>Create Category</a></li>
+					<li role="presentation" (click)="clickListCategory()" [ngClass]="{'active': activeListCategory}"
+					[routerLink]="['/categoryList']"><a>Edit/Delete Category</a></li>
+					<li role="presentation" (click)="clickCUList()" [ngClass]="{'active': activeListCU}"
+					[routerLink]="['/clientUserList']"><a>Delete Client User</a></li>
 				</ul>
 			</div>
 		</router-outlet>

@@ -9,6 +9,8 @@ import { CreateSecurityClientComponent } from './clientUser/create-security-clie
 import { DeleteSecurityClientComponent } from './clientUser/delete-security-client';
 import { AdminLoginComponent } from './login/admin-login';
 import { CreateClientUserComponent } from './administrator/create-client-user';
+import { CreateCategoryComponent } from './administrator/create-category';
+import { CategoryListComponent } from './administrator/category-list';
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,4 +22,6 @@ export const rootRouterConfig: Routes = [
   { path: 'deleteSecurityClient', component: DeleteSecurityClientComponent },
   { path: 'admin', component: AdminLoginComponent },
   { path: 'createClientUser', component: CreateClientUserComponent },
+  { path: 'createCategory', component: CreateCategoryComponent },
+  { path: 'categoryList', component: CategoryListComponent },
 ];

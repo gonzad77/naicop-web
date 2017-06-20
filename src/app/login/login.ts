@@ -76,11 +76,12 @@ export class LoginComponent {
   }
 
   onSubmit(values){
-    this.loginService.getAdmin(values)
+    this.loginService.getClientUser(values)
     .then( res => {
-      console.log(res);
+      this.localStorage.set('rol', 'user')
+      this.localStorage.set('id', res.json().ID);
+      this.router.navigate(['/profile']);
     }, err => console.log(err))
-    // this.router.navigate(['/profile']);
   }
 
 }

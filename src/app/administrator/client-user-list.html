@@ -1,0 +1,21 @@
+<div class="panel panel-default content col-md-offset-1 col-md-6 ">
+  <!-- Default panel contents -->
+  <div class="panel-heading">My client users</div>
+  <div class="panel-body">
+    <p>In this section you can delete your client users</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor='let clientUser of clientUsers'>
+    <td>{{clientUser.name}}</td>
+    <td>{{clientUser.email}}</td>
+    <td><a>Delete</a></td>
+  </tr>
+  </table>
+</div>
