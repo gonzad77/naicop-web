@@ -13,7 +13,12 @@ export class ClientUserService {
   ){}
 
   getClientUser(data){
-    return this.http.get(this.api + 'clientUser/' + data.id, {})
+    return this.http.get(this.api + 'clientUser/' + data, {})
+    .toPromise()
+  }
+
+  getClientUsers(){
+    return this.http.get(this.api + 'clientUser/', {})
     .toPromise()
   }
 
@@ -21,16 +26,19 @@ export class ClientUserService {
     return this.http.post(this.api + 'clientUser/', {
       //hay que ver la entidad clientUser
     })
+    .toPromise()
   }
 
   updateClientUser(data){
-    return this.http.post(this.api + 'clientUser/' + data.id, {
+    return this.http.post(this.api + 'clientUser/' + data, {
       //hay que ver la entidad clientUser
     })
+    .toPromise()
   }
 
   deleteClientUser(data){
-    return this.http.post(this.api + 'clientUser/delete/' + data.id)
+    return this.http.post(this.api + 'clientUser/delete/' + data ,{})
+    .toPromise()
   }
 
 }

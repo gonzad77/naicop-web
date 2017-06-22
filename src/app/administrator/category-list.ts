@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { CategoryService } from '../services/category-service';
 
 @Component({
   selector: '',
@@ -9,25 +10,29 @@ import { Router } from '@angular/router';
 
 export class CategoryListComponent {
 
-  categories: Array<any> = [
-    {
-      name: 'Evento1',
-    },
-    {
-      name: 'Evento2',
-    },
-    {
-      name: 'Evento3',
-    },
-    {
-      name: 'Evento4',
-    }
-  ]
-
+  categories: Array<any>;
 
   constructor(
-    public router: Router
+    public router: Router,
+    public categoryService: CategoryService
   ){
   }
 
+  ngOnInit(){
+    this.getCategories();
+  }
+
+  getCategories(){
+    this.categoryService.getCategories()
+    .then( res => console.log(res))
+  }
+
+  editCategory(categoryId){
+    this.router.navigate(['/editCategory',{id: categoryId}]);
+  }
+
+  deleteCategory(categoryId){
+    this.categoryService.deleteCategory(categoryId)
+    .then( res => this.getCategories())
+  }
 }

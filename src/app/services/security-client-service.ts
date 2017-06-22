@@ -21,20 +21,13 @@ export class SecurityClientService {
     .toPromise()
   }
 
-  getCategory(data){
-    return this.http.get(this.api + 'categories/' + data.id, {})
+  getSecurityClients(data){
+    return this.http.get(this.api + 'securityClient/' + data, {})
     .toPromise()
   }
 
-  editCategory(data){
-    return this.http.post(this.api + 'categories/' + data.id, {
-      'name' : data.name
-    })
-    .toPromise()
-  }
-
-  deleteCategory(data){
-    return this.http.post(this.api + 'categories/delete/' + data.id,{})
+  deleteSecurityClient(clientId, securityClientId){
+    return this.http.post(this.api + 'securityClient/delete/',{})
     .toPromise()
   }
 

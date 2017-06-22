@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormGroup, FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
+import { CategoryService } from '../services/category-service';
+
 
 @Component({
   selector: '',
@@ -23,7 +25,8 @@ export class CreateCategoryComponent {
 
 
   constructor(
-    public router: Router
+    public router: Router,
+    public categoryService: CategoryService
   ){
   }
 
@@ -34,7 +37,7 @@ export class CreateCategoryComponent {
   }
 
   onSubmit(values){
-    
+
   }
 
 }

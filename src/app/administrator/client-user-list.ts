@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { ClientUserService } from '../services/client-user-service';
 
 @Component({
   selector: '',
@@ -9,9 +10,25 @@ import { Router } from '@angular/router';
 
 export class ClientUserListComponent {
 
+  clientUsers: Array<any>;
+
   constructor(
-    public router: Router
+    public router: Router,
+    public clientUserService: ClientUserService
   ){
   }
 
+  ngOnInit(){
+    this.getClientUsers();
+  }
+
+  getClientUsers(){
+    this.clientUserService.getClientUsers()
+    .then( res => console.log(res))
+  }
+
+  deleteClientUser(clientUserId){
+    this.clientUserService.deleteClientUser(clientUserId)
+    .then( res => this.getClientUsers())
+  }
 }

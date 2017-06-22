@@ -14,6 +14,11 @@ export class CategoryService {
     public http: Http
   ){}
 
+  getCategories(){
+    return this.http.get(this.api + 'categories', {})
+    .toPromise()
+  }
+
   createCategory(data){
     return this.http.post(this.api + 'categories', {
       'name' : data.name
@@ -22,7 +27,7 @@ export class CategoryService {
   }
 
   getCategory(data){
-    return this.http.get(this.api + 'categories/' + data.id, {})
+    return this.http.get(this.api + 'categories/' + data, {})
     .toPromise()
   }
 
@@ -34,7 +39,7 @@ export class CategoryService {
   }
 
   deleteCategory(data){
-    return this.http.post(this.api + 'categories/delete/' + data.id,{})
+    return this.http.post(this.api + 'categories/delete/' + data,{})
     .toPromise()
   }
 

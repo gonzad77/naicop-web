@@ -17,7 +17,7 @@ import { ClientUserResolver } from './clientUser/client-user-resolver';
 import { ClientUserService } from './services/client-user-service';
 import { CategoryService } from './services/category-service';
 import { LoginService } from './services/login-service';
-import { SecurutyClientService } from './services/security-client-service';
+import { SecurityClientService } from './services/security-client-service';
 import { EventService } from './services/event-service';
 import { CreateCategoryComponent } from './administrator/create-category';
 import { AdminLoginComponent } from './login/admin-login';
@@ -60,7 +60,8 @@ import { ImageUploadModule } from 'angular2-image-upload';
     ClientUserResolver,
     ClientUserService,
     LoginService,
-    CategoryService
+    CategoryService,
+    SecurityClientService
   ],
   bootstrap: [ AppComponent ]
 })

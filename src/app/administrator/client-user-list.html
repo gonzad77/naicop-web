@@ -15,7 +15,7 @@
   <tr *ngFor='let clientUser of clientUsers'>
     <td>{{clientUser.name}}</td>
     <td>{{clientUser.email}}</td>
-    <td><a>Delete</a></td>
+    <td><a (click)='deleteClientUser(clientUser.ID)'>Delete</a></td>
   </tr>
   </table>
 </div>

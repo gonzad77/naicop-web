@@ -14,8 +14,8 @@
   </tr>
   <tr *ngFor='let category of categories'>
     <td>{{category.name}}</td>
-    <td><a>Edit</a></td>
-    <td><a>Delete</a></td>
+    <td><a (click)='editCategory(category.ID)'>Edit</a></td>
+    <td><a (click)='deleteCategory(category.ID)'>Delete</a></td>
   </tr>
   </table>
 </div>

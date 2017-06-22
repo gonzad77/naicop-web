@@ -3,7 +3,6 @@ import { Event } from '../entities/event';
 import { Router } from '@angular/router';
 import { Validators, FormGroup, FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
-import * as $ from 'jquery/dist/jquery';
 
 
 @Component({

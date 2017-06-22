@@ -10,7 +10,7 @@
   </tr>
   <tr *ngFor='let security of securities'>
     <td>{{security.email}}</td>
-    <td><a>Delete</a></td>
+    <td><a (click)="delete(security.id)">Delete</a></td>
   </tr>
   </table>
 </div>
