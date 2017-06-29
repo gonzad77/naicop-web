@@ -44,7 +44,7 @@ export class AdminLoginComponent {
         this.router.navigate(['/createClientUser']);
       }
       else{
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/createEvent'])
       }
     }
     this.loginForm = new FormGroup({

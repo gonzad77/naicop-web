@@ -11,8 +11,6 @@ import { SecurityClientService } from '../services/security-client-service';
 
 export class DeleteSecurityClientComponent {
 
-
-  clientId: number;
   securities: Array<any>;
 
   constructor(
@@ -23,17 +21,18 @@ export class DeleteSecurityClientComponent {
   }
 
   ngOnInit(){
-    this.clientId = Number(this.localStorage.get('id'));
     this.getSecurityClients();
   }
 
   getSecurityClients(){
-    this.securityClientService.getSecurityClients(this.clientId)
-    .then( res => console.log(res))
+    this.securityClientService.getSecurityClients()
+    .then( res => this.securities = res.json())
   }
 
-  delete(securityClientID){
-    this.securityClientService.deleteSecurityClient(securityClientID, this.clientId)
-    .then( res => this.getSecurityClients())
+  delete(securityClient){
+    this.securityClientService.deleteSecurityClient(securityClient)
+    .then( res => {
+      this.getSecurityClients()
+    }, err => alert("Error at delete"))
   }
 }

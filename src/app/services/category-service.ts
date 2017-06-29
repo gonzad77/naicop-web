@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class CategoryService {
 
-  api: string = 'http://192.168.0.103:14/api/';
+  api: string = 'http://localhost:56185/api/';
 
   constructor(
     public http: Http
@@ -26,20 +26,12 @@ export class CategoryService {
     .toPromise()
   }
 
-  getCategory(data){
-    return this.http.get(this.api + 'categories/' + data, {})
-    .toPromise()
-  }
-
-  editCategory(data){
-    return this.http.post(this.api + 'categories/' + data.id, {
-      'name' : data.name
-    })
-    .toPromise()
-  }
-
   deleteCategory(data){
-    return this.http.post(this.api + 'categories/delete/' + data,{})
+    console.log(data)
+    return this.http.post(this.api + 'categories/delete/',{
+      'name' : data.Name,
+      'ID': data.ID
+    })
     .toPromise()
   }
 

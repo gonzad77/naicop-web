@@ -9,13 +9,11 @@
   <table class="table">
     <tr>
     <th>Name</th>
-    <th>Edit</th>
     <th>Delete</th>
   </tr>
   <tr *ngFor='let category of categories'>
-    <td>{{category.name}}</td>
-    <td><a (click)='editCategory(category.ID)'>Edit</a></td>
-    <td><a (click)='deleteCategory(category.ID)'>Delete</a></td>
+    <td *ngIf='category.Deleted == 0'>{{category.Name}}</td>
+    <td *ngIf='category.Deleted == 0'><a (click)='deleteCategory(category)'>Delete</a></td>
   </tr>
   </table>
 </div>

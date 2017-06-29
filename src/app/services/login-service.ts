@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class LoginService {
 
-  api: string = 'http://192.168.0.103:14/api/';
+  api: string = 'http://localhost:56185/api/';
 
   constructor(
     public http: Http
@@ -23,7 +23,7 @@ export class LoginService {
   }
 
   getClientUser(data){
-    return this.http.post(this.api + 'clientUser/login', {
+    return this.http.post(this.api + 'clientUsers/login', {
       'email' : data.email,
       'password' : data.password
     })

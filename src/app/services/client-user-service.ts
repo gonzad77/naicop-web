@@ -6,25 +6,29 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ClientUserService {
 
-  api: string = 'http://192.168.0.103:14/api/';
+  api: string = 'http://localhost:56185/api/';
 
   constructor(
       public http: Http
   ){}
 
   getClientUser(data){
-    return this.http.get(this.api + 'clientUser/' + data, {})
+    return this.http.get(this.api + 'clientUsers/' + data, {})
     .toPromise()
   }
 
   getClientUsers(){
-    return this.http.get(this.api + 'clientUser/', {})
+    return this.http.get(this.api + 'clientUsers/', {})
     .toPromise()
   }
 
-  createClientUser(data){
-    return this.http.post(this.api + 'clientUser/', {
-      //hay que ver la entidad clientUser
+  createClientUser(data, image, imageTitle){
+    return this.http.post(this.api + 'clientUsers/', {
+      email: data.email,
+      password: data.password,
+      description: data.description,
+      image: image,
+      image_name: imageTitle
     })
     .toPromise()
   }
@@ -37,7 +41,9 @@ export class ClientUserService {
   }
 
   deleteClientUser(data){
-    return this.http.post(this.api + 'clientUser/delete/' + data ,{})
+    return this.http.post(this.api + 'clientUsers/delete/',{
+      'ID': data.ID
+    })
     .toPromise()
   }
 

@@ -2,22 +2,20 @@
   <!-- Default panel contents -->
   <div class="panel-heading">My events</div>
   <div class="panel-body">
-    <p>In this section you can edit or delete your events</p>
+    <p>In this section you can delete your events</p>
   </div>
 
   <!-- Table -->
   <table class="table">
     <tr>
-    <th>Name</th>
-    <th>Date</th>
-    <th>Edit</th>
+    <th>Title</th>
+    <th>Start Date</th>
     <th>Delete</th>
   </tr>
   <tr *ngFor='let event of events'>
-    <td>{{event.name}}</td>
-    <td>{{event.date}}</td>
-    <td><a>Edit</a></td>
-    <td><a>Delete</a></td>
+    <td *ngIf='event.Deleted == 0'>{{event.Title}}</td>
+    <td *ngIf='event.Deleted == 0'>{{event.StartDate}}</td>
+    <td *ngIf='event.Deleted == 0'><a (click)="deleteEvent(event)">Delete</a></td>
   </tr>
   </table>
 </div>

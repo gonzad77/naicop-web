@@ -43,7 +43,7 @@ export class LoginComponent {
         this.router.navigate(['/createClientUser']);
       }
       else{
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/createEvent'])
       }
     }
     this.loginForm = new FormGroup({
@@ -80,7 +80,7 @@ export class LoginComponent {
     .then( res => {
       this.localStorage.set('rol', 'user')
       this.localStorage.set('id', res.json().ID);
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/createEvent']);
     }, err => console.log(err))
   }
 

@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { EventService } from '../services/event-service';
+
 
 @Component({
   selector: '',
@@ -9,29 +11,27 @@ import { Router } from '@angular/router';
 
 export class EventsListComponent {
 
-  events: Array<any> = [
-    {
-      name: 'Evento1',
-      date: '22/04/2012'
-    },
-    {
-      name: 'Evento2',
-      date: '22/04/2013'
-    },
-    {
-      name: 'Evento3',
-      date: '22/04/2014'
-    },
-    {
-      name: 'Evento4',
-      date: '22/04/2015'
-    }
-  ]
+  events: Array<any>
 
 
   constructor(
-    public router: Router
-  ){
+    public router: Router,
+    public eventService: EventService
+  ){}
+
+  ngOnInit(){
+    this.getEvents();
   }
 
+  getEvents(){
+    this.eventService.getEvents()
+    .then( res => this.events = res.json())
+  }
+
+  deleteEvent(event){
+    this.eventService.deleteEvent(event)
+    .then( res => {
+      this.getEvents()
+    }, err => alert('Error at delete'))
+  }
 }

@@ -61,7 +61,8 @@ import { ImageUploadModule } from 'angular2-image-upload';
     ClientUserService,
     LoginService,
     CategoryService,
-    SecurityClientService
+    SecurityClientService,
+    EventService
   ],
   bootstrap: [ AppComponent ]
 })

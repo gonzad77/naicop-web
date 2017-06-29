@@ -3,6 +3,10 @@ import { Event } from '../entities/event';
 import { Router } from '@angular/router';
 import { Validators, FormGroup, FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
+import { EventService } from '../services/event-service';
+import { CategoryService } from '../services/category-service';
+import { LocalStorageService } from 'angular-2-local-storage';
+
 
 
 @Component({
@@ -13,10 +17,12 @@ import 'rxjs/add/operator/debounceTime';
 
 export class CreateEventComponent {
 
+  categories: Array<any>;
   lat: number;
   lng: number;
   image: string;
-  geocoder: any
+  imageName: string;
+  geocoder: any;
   autocompleteItems: any;
   GoogleAutocomplete: any;
   newEvent: Event;
@@ -29,11 +35,19 @@ export class CreateEventComponent {
     'description': [],
     'capacity': [],
     'dateStart': [],
-    'dateFinish': []
+    'dateFinish': [],
+    'price': [],
+    'category': []
   };
   validationMessages = {
     'title': {
       'required': 'Title is required'
+    },
+    'category': {
+      'required': 'Category is required'
+    },
+    'price': {
+      'required': 'Price is required'
     },
     'timeStart':{
       'required':     'Start time is required'
@@ -58,7 +72,10 @@ export class CreateEventComponent {
 
   constructor(
     public router: Router,
-    public zone: NgZone
+    public zone: NgZone,
+    public categoriesService: CategoryService,
+    public eventService: EventService,
+    public localStorage: LocalStorageService
   ){
     this.geocoder = new google.maps.Geocoder;
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
@@ -70,20 +87,27 @@ export class CreateEventComponent {
           center: {lat: -33.8688, lng: 151.2195},
           zoom: 13
     });
+    this.categoriesService.getCategories()
+    .then( res => {
+      this.categories = res.json()
+      console.log(this.categories)
+    }, err => console.log(err));
+
     this.createEventForm = new FormGroup({
       title: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       capacity: new FormControl('', Validators.required),
       dateStart: new FormControl('', Validators.required),
       dateFinish: new FormControl('', Validators.required),
       timeStart: new FormControl('', Validators.required),
       timeFinish: new FormControl('', Validators.required),
-      autocomplete: new FormControl('', Validators.required)
+      autocomplete: new FormControl('', Validators.required),
+      category: new FormControl('',Validators.required)
     })
     this.createEventForm.valueChanges
       .debounceTime(400)
       .subscribe(data => {
-        console.log(data);
         this.onValueChanged(data);
         this.updateSearch();
       });
@@ -145,14 +169,19 @@ export class CreateEventComponent {
   }
 
   imageUploaded(event){
-      this.image = event.src
+    this.image = event.src;
+    this.imageName = event.file.name;
   }
 
 
   onSubmit(values){
-    console.log(values);
-    console.log(this.lat)
-    console.log(this.lng)
+    let clientUserId = this.localStorage.get('id');
+    let separatedImage = this.image.split(",");
+    let image = separatedImage[1];
+    this.eventService.createEvent(values, image, this.imageName, this.lat, this.lng, clientUserId)
+    .then( res => {
+      alert('Event created')
+    }, err => alert('Error at create'))
   }
 
 }

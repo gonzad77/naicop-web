@@ -37,7 +37,11 @@ export class CreateCategoryComponent {
   }
 
   onSubmit(values){
-
+    this.categoryService.createCategory(values)
+    .then( res => {
+      console.log(res);
+      alert("Category created")
+    }, err => ("An error has ocurred"))
   }
 
 }

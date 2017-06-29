@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormControl} from '@angular/forms';
 import { ClientUser } from '../entities/clientUser';
 import 'rxjs/add/operator/debounceTime';
+import { ClientUserService } from '../services/client-user-service';
 
 
 @Component({
@@ -14,10 +15,11 @@ import 'rxjs/add/operator/debounceTime';
 export class CreateClientUserComponent {
 
   image: string;
+  imageName: string;
   clientUser: ClientUser;
   createCUForm: FormGroup;
   formErrors = {
-    'name': [],
+    'password': [],
     'email': [],
     'description': []
   };
@@ -26,7 +28,7 @@ export class CreateClientUserComponent {
       'required':      'Email is required',
       'pattern':      'Incorrect format'
     },
-    'name': {
+    'password': {
       'required': 'Name is required'
     },
     'description':{
@@ -37,13 +39,14 @@ export class CreateClientUserComponent {
 
   constructor(
     public route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public clientUserService: ClientUserService
   ){
   }
 
   ngOnInit(): void {
     this.createCUForm = new FormGroup({
-      name: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -74,10 +77,16 @@ export class CreateClientUserComponent {
   }
 
   imageUploaded(event){
-    this.image = event.src
+    this.image = event.src;
+    this.imageName = event.file.name;
   }
 
   onSubmit(values){
-    console.log(values);
+    let separatedImage = this.image.split(",");
+    let image = separatedImage[1];
+    this.clientUserService.createClientUser(values, image,this.imageName)
+    .then( res => {
+    alert("ClientUser created")
+  }, err => alert("An error has ocurred"))
   }
 }

@@ -24,15 +24,17 @@ export class CategoryListComponent {
 
   getCategories(){
     this.categoryService.getCategories()
-    .then( res => console.log(res))
+    .then( res => this.categories = res.json())
   }
 
   editCategory(categoryId){
     this.router.navigate(['/editCategory',{id: categoryId}]);
   }
 
-  deleteCategory(categoryId){
-    this.categoryService.deleteCategory(categoryId)
-    .then( res => this.getCategories())
+  deleteCategory(category){
+    this.categoryService.deleteCategory(category)
+    .then( res => {
+      this.getCategories()
+    }, err => alert("Error at delete"))
   }
 }

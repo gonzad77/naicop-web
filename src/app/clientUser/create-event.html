@@ -43,6 +43,26 @@
           </div>
         </div>
         <div class="form-group">
+          <label class="center-block" >Price</label>
+          <input class="form-control" type="number" formControlName="price">
+        </div>
+        <div *ngIf="formErrors.price">
+          <div *ngFor="let errors of formErrors.price" >
+            <p class="alert alert-danger">{{ errors }}<p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="center-block" >Category</label>
+          <select formControlName="category">
+            <option *ngFor="let item of categories" [value]="item.ID">{{item.Name}}</option>
+          </select>
+        </div>
+        <div *ngIf="formErrors.category">
+          <div *ngFor="let errors of formErrors.category">
+            <p class="alert alert-danger">{{ errors }}<p>
+          </div>
+        </div>
+        <div class="form-group">
           <label class="center-block" >Start Date</label>
           <input class="form-control" type="date" formControlName="dateStart">
         </div>

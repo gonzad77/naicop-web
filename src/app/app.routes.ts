@@ -11,11 +11,12 @@ import { AdminLoginComponent } from './login/admin-login';
 import { CreateClientUserComponent } from './administrator/create-client-user';
 import { CreateCategoryComponent } from './administrator/create-category';
 import { CategoryListComponent } from './administrator/category-list';
+import { ClientUserListComponent } from './administrator/client-user-list';
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ClientUserProfileComponent, resolve: { data: ClientUserResolver} },
+  // { path: 'profile', component: ClientUserProfileComponent, resolve: { data: ClientUserResolver} },
   { path: 'createEvent', component: CreateEventComponent },
   { path: 'eventsList', component: EventsListComponent },
   { path: 'createSecurityClient', component: CreateSecurityClientComponent },
@@ -24,4 +25,5 @@ export const rootRouterConfig: Routes = [
   { path: 'createClientUser', component: CreateClientUserComponent },
   { path: 'createCategory', component: CreateCategoryComponent },
   { path: 'categoryList', component: CategoryListComponent },
+  { path: 'clientUserList', component: ClientUserListComponent },
 ];

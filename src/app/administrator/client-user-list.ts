@@ -24,7 +24,9 @@ export class ClientUserListComponent {
 
   getClientUsers(){
     this.clientUserService.getClientUsers()
-    .then( res => console.log(res))
+    .then( res => {
+      this.clientUsers = res.json();
+    })
   }
 
   deleteClientUser(clientUserId){

@@ -8,26 +8,29 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SecurityClientService {
 
-  api: string = 'http://192.168.0.103:14/api/';
+  api: string = 'http://localhost:56185/api/';
 
   constructor(
     public http: Http
   ){}
 
   createSecurityClient(data){
-    return this.http.post(this.api + 'securityClient', {
-      //hay que ver la entidad securityClient
+    return this.http.post(this.api + 'securityClients', {
+      Email: data.email,
+      Password: data.password
     })
     .toPromise()
   }
 
-  getSecurityClients(data){
-    return this.http.get(this.api + 'securityClient/' + data, {})
+  getSecurityClients(){
+    return this.http.get(this.api + 'securityClients/',{})
     .toPromise()
   }
 
-  deleteSecurityClient(clientId, securityClientId){
-    return this.http.post(this.api + 'securityClient/delete/',{})
+  deleteSecurityClient(securityClient){
+    return this.http.post(this.api + 'securityClients/delete/',{
+      ID: securityClient.ID
+    })
     .toPromise()
   }
 

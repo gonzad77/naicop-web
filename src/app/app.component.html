@@ -11,12 +11,10 @@
 		<router-outlet>
 			<div class="col-md-4" *ngIf="clientUserSlide">
 				<ul class="nav nav-pills nav-stacked">
-					<li role="presentation" (click)="clickProfile()" [ngClass]="{'active': activeProfile}"
-					[routerLink]="['/profile']"><a>Edit Profile</a></li>
 					<li role="presentation" (click)="clickCreateEvent()" [ngClass]="{'active': activeCreateEvent}"
 					[routerLink]="['/createEvent']"><a>Create Event</a></li>
 					<li role="presentation" (click)="clickEventList()" [ngClass]="{'active': activeEventList}"
-					[routerLink]="['/eventsList']"><a>Delete/Edit Event</a></li>
+					[routerLink]="['/eventsList']"><a>Delete Event</a></li>
 					<li role="presentation" (click)="clickCreateSC()" [ngClass]="{'active': activeCreateSC}"
 					[routerLink]="['/createSecurityClient']"><a>New Securuty Client</a></li>
 					<li role="presentation" (click)="clickDeleteSC()" [ngClass]="{'active': activeDeleteSC}"

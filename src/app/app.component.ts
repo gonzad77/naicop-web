@@ -14,12 +14,11 @@ export class AppComponent {
 
   adminSlide: boolean = false;
   clientUserSlide: boolean = false
-  activeProfile: boolean = true;
-  activeCreateEvent: boolean;
+  activeCreateEvent: boolean = true;
   activeEventList: boolean;
   activeCreateSC: boolean;
   activeDeleteSC: boolean;
-  activeCreateCU: boolean;
+  activeCreateCU: boolean = true;
   activeCreateCategory: boolean;
   activeCategoryList: boolean;
   activeCUList: boolean;
@@ -51,16 +50,7 @@ export class AppComponent {
 
   }
 
-  clickProfile(){
-    this.activeProfile = true;
-    this.activeCreateEvent = false;
-    this.activeEventList = false;
-    this.activeCreateSC = false;
-    this.activeDeleteSC = false;
-  }
-
   clickCreateEvent(){
-    this.activeProfile = false;
     this.activeCreateEvent = true;
     this.activeEventList = false;
     this.activeCreateSC = false;
@@ -68,7 +58,6 @@ export class AppComponent {
   }
 
   clickEventList(){
-    this.activeProfile = false;
     this.activeCreateEvent = false;
     this.activeEventList = true;
     this.activeCreateSC = false;
@@ -76,7 +65,6 @@ export class AppComponent {
   }
 
   clickCreateSC(){
-    this.activeProfile = false;
     this.activeCreateEvent = false;
     this.activeEventList = false;
     this.activeCreateSC = true;
@@ -84,7 +72,6 @@ export class AppComponent {
   }
 
   clickDeleteSC(){
-    this.activeProfile = false;
     this.activeCreateEvent = false;
     this.activeEventList = false;
     this.activeCreateSC = false;

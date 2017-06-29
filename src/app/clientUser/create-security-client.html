@@ -1,7 +1,7 @@
 <div class="col-md-offset-2 col-md-4 content">
   <form [formGroup]="createSCForm" class="form" (ngSubmit)="onSubmit(createSCForm.value)" >
     <div class="form-group">
-      <label class="center-block" >Name</label>
+      <label class="center-block" >Email</label>
       <input class="form-control" type="email" formControlName="email">
     </div>
     <div *ngIf="formErrors.email">

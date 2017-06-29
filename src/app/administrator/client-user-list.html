@@ -8,14 +8,12 @@
   <!-- Table -->
   <table class="table">
     <tr>
-    <th>Name</th>
     <th>Email</th>
     <th>Delete</th>
   </tr>
   <tr *ngFor='let clientUser of clientUsers'>
-    <td>{{clientUser.name}}</td>
-    <td>{{clientUser.email}}</td>
-    <td><a (click)='deleteClientUser(clientUser.ID)'>Delete</a></td>
+    <td *ngIf='clientUser.Deleted == 0'>{{clientUser.Email}}</td>
+    <td *ngIf='clientUser.Deleted == 0'><a (click)='deleteClientUser(clientUser)'>Delete</a></td>
   </tr>
   </table>
 </div>
